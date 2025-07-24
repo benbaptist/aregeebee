@@ -153,24 +153,6 @@ Publish to `led/command` topic with JSON commands:
 {"action": "test"}
 ```
 
-### Using the Enhanced Client
-
-The included `clients/example.py` demonstrates both protocols:
-
-```bash
-# Install MQTT client library
-pip install paho-mqtt
-
-# Run the enhanced client
-python3 clients/example.py
-```
-
-Features:
-- Automatic protocol detection
-- Interactive command mode
-- Both UDP and MQTT examples
-- Status monitoring
-
 ### Custom Client Examples
 
 #### UDP Client (Compatible with v1.x)
