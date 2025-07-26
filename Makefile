@@ -1,10 +1,11 @@
 # Makefile for Pico MicroPython firmware build
 
 # Variables
-BUILD_DIR = packaging
+BUILD_DIR = build
 BIN_DIR = $(BUILD_DIR)/bin
 BUILD_SCRIPT = $(BUILD_DIR)/build.py
 PYTHON = python3
+VERSION ?= # Can be overridden: make build VERSION=1.2.3
 
 # Default target
 .PHONY: all
@@ -18,7 +19,7 @@ $(BIN_DIR):
 .PHONY: build
 build: $(BIN_DIR)
 	@echo "Building firmware bundle..."
-	$(PYTHON) $(BUILD_SCRIPT)
+	$(if $(VERSION),$(PYTHON) $(BUILD_SCRIPT) --version $(VERSION),$(PYTHON) $(BUILD_SCRIPT))
 	@echo "Build complete! Output in $(BIN_DIR)/"
 
 # Clean build artifacts
@@ -43,6 +44,11 @@ info:
 	@echo "  clean  - Clean build artifacts"
 	@echo "  info   - Show this information"
 	@echo "  help   - Show this information"
+	@echo "  version - Show version of last build"
+	@echo ""
+	@echo "Version examples:"
+	@echo "  make build VERSION=1.2.3"
+	@echo "  make build VERSION=2.0.0-beta"
 
 # Help target (alias for info)
 .PHONY: help
